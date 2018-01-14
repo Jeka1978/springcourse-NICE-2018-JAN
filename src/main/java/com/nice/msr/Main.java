@@ -34,5 +34,7 @@ public class Main {
 
         Person person = Person.builder().beer("Leff").beer("Corona").age(18).salary(2000).name("Moshe").build();
         System.out.println(person);
+
+        System.out.println(Constatnts.LOGO);
     }
 }

@@ -34,6 +34,4 @@ public class Person {
         log.info(this.toString());
     }
 
-
-
 }
