@@ -8,7 +8,6 @@ import java.io.Serializable;
  * @author Evgeny Borisov
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Employee implements Serializable{

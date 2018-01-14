@@ -13,6 +13,7 @@ public class MainForRead {
     @SneakyThrows
     public static void main(String[] args) throws IOException {
 
+        System.out.println(Math.sqrt(4));
         File file = new File("C:\\temp\\data.obj");
 
         FileInputStream fos = new FileInputStream(file);
