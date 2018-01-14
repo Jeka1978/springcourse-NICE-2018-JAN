@@ -1,5 +1,7 @@
 package com.nice.msr;
 
+import lombok_examples.Person;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,6 +30,9 @@ public class Main {
         for (String arg : args) {
             System.out.println("arg = " + arg);
         }
-        System.out.println("Hello NICE!!!");
+
+
+        Person person = Person.builder().beer("Leff").beer("Corona").age(18).salary(2000).name("Moshe").build();
+        System.out.println(person);
     }
 }
