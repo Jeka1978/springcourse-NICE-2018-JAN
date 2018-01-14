@@ -1,15 +1,17 @@
 package strategy;
 
+import lombok.AllArgsConstructor;
 import lombok.experimental.Delegate;
 
 /**
  * @author Evgeny Borisov
  */
-public class RadioAlarmImpl implements RadioAlarm {
+@AllArgsConstructor
+public class RadioAlarmImpl implements Radio {
     @Delegate
-    private Alarm alarm = new AlarmImpl();
+    private Alarm alarm;
     @Delegate
-    private Radio radio = new RadioImpl();
+    private Radio radio;
 
 
 
