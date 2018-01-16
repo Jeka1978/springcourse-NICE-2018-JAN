@@ -16,7 +16,7 @@ public class Main {
 
         List<Integer> integers = Arrays.asList(1, 2, 3);
 
-        integers.forEach(System.out::println);
+//        integers.forEach(System.out::println);
 
         for (Integer integer : integers) {
             System.out.println("integer = " + integer);

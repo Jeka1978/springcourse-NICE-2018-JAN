@@ -20,7 +20,7 @@ public class MainForRead {
         ObjectInputStream oos = new ObjectInputStream(fos);
         List<Employee> employeees = (List<Employee>) oos.readObject();
         System.out.println(employeees.size());
-        employeees.forEach(System.out::println);
+//        employeees.forEach(System.out::println);
 
     }
 }
