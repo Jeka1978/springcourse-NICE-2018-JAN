@@ -4,14 +4,23 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean  id="shakespearQuoter" class="quoters.ShakespearQuoter">
+
+    <bean id="robot" class="quoters.TalkingRobotImpl" init-method="talk">
+        <constructor-arg >
+            <list>
+                <ref bean="shakespearQuoter"/>
+                <ref bean="terminatorQuoter"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="shakespearQuoter" class="quoters.ShakespearQuoter" scope="prototype">
         <property name="message" value="2 B || ! 2 B"/>
     </bean>
 
     <bean id="terminatorQuoter" class="quoters.TerminatorQuoter">
         <property name="messages">
             <list>
-                <!--<ref bean=""-->
                 <value>I'll be back</value>
                 <value>Astalavista baby</value>
             </list>
