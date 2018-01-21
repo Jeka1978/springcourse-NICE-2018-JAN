@@ -2,11 +2,15 @@ package quoters;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.Collection;
+import java.util.Map;
+
 /**
  * @author Evgeny Borisov
  */
 public class Main {
     public static void main(String[] args) {
-//        new ClassPathXmlApplicationContext()
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+
     }
 }
