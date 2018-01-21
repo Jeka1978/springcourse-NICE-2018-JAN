@@ -1,5 +1,7 @@
 package my_spring;
 
+import org.springframework.scheduling.annotation.Scheduled;
+
 import javax.annotation.PostConstruct;
 
 /**
