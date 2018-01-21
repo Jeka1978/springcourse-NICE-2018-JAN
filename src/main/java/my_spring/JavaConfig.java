@@ -13,6 +13,7 @@ public class JavaConfig implements Config {
 
     public JavaConfig() {
         map.put(Speaker.class, ConsoleSpeaker.class);
+        map.put(Cleaner.class, CleanerImpl.class);
 
     }
 

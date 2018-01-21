@@ -4,8 +4,8 @@ import lombok.SneakyThrows;
 import org.reflections.ReflectionUtils;
 import org.reflections.Reflections;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import javax.annotation.PostConstruct;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -19,6 +19,7 @@ public class ObjectFactory {
     private Config config = new JavaConfig();
     private Reflections scanner = new Reflections("my_spring");
     private List<ObjectConfigurator> objectConfigurators = new ArrayList<>();
+    private List<ProxyConfigurator> proxyConfigurators = new ArrayList<>();
 
     public static ObjectFactory getInstance() {
         return ourInstance;
@@ -32,6 +33,12 @@ public class ObjectFactory {
                 objectConfigurators.add(aClass.newInstance());
             }
         }
+        Set<Class<? extends ProxyConfigurator>> set = scanner.getSubTypesOf(ProxyConfigurator.class);
+        for (Class<? extends ProxyConfigurator> aClass : set) {
+            if (!Modifier.isAbstract(aClass.getModifiers())) {
+                proxyConfigurators.add(aClass.newInstance());
+            }
+        }
     }
 
 
@@ -41,13 +48,35 @@ public class ObjectFactory {
     public <T> T createObject(Class<T> type)  {
         type = resolveImpl(type);
         T t = type.newInstance();
-
         configure(t);
+        invokeInitMethod(type, t);
 
-        //todo run init method (method which marked by @PostConstruct)
+        t = wrapWithProxy(type, t);
+
 
         return t;
 
+    }
+
+
+
+
+
+
+    private <T> T wrapWithProxy(Class<T> type, T t) {
+        for (ProxyConfigurator proxyConfigurator : proxyConfigurators) {
+            t = (T) proxyConfigurator.configureProxy(t, type);
+        }
+        return t;
+    }
+
+    private <T> void invokeInitMethod(Class<T> type, T t) throws IllegalAccessException, InvocationTargetException {
+        Method[] methods = type.getMethods();
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(PostConstruct.class)) {
+                method.invoke(t);
+            }
+        }
     }
 
     private <T> Class<T> resolveImpl(Class<T> type) {

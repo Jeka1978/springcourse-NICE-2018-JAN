@@ -20,5 +20,6 @@ public class IRobot {
         speaker.speak("I started");
         cleaner.clean();
         speaker.speak("I finished");
+
     }
 }
