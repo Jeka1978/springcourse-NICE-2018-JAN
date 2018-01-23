@@ -23,20 +23,10 @@ public class ScreenSaverConfig {
         return new Random();
     }
 
-    @Bean
-    public ColorFrame colorFrame() {
-        return new ColorFrame() {
-            @Override
-            protected Color getColorBean() {
-                return color();
-//                return context.getBean(Color.class); the same shit
 
-            }
-        };
-    }
 
     @Bean
-    @Scope("prototype")
+    @Scope(value = "prototype",proxyMode = ScopedProxyMode.TARGET_CLASS)
     public Color color() {
         return new Color(random().nextInt(255), random().nextInt(255), random().nextInt(255));
     }
@@ -47,7 +37,7 @@ public class ScreenSaverConfig {
 
         while (true) {
             context.getBean(ColorFrame.class).moveToRandomLocation();
-            Thread.sleep(50);
+            Thread.sleep(200);
         }
     }
 }
