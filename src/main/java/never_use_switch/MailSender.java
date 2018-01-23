@@ -12,28 +12,12 @@ import java.util.Set;
 /**
  * @author Evgeny Borisov
  */
+
 public class MailSender {
 
     private Map<Integer, MailGenerator> map = new HashMap<>();
 
-    @SneakyThrows
-    public MailSender() {
-        Reflections scanner = new Reflections("never_use_switch");
-        Set<Class<? extends MailGenerator>> classes = scanner.getSubTypesOf(MailGenerator.class);
-        for (Class<? extends MailGenerator> generatorClass : classes) {
-            if (!Modifier.isAbstract(generatorClass.getModifiers())) {
-                MailCode annotation = generatorClass.getAnnotation(MailCode.class);
-                if (annotation == null) {
-                    throw new RuntimeException("in you implement " + MailGenerator.class.getSimpleName() + " you should annotated it with @MailCode");
-                }
-                int mailCode = annotation.value();
-                if (map.containsKey(mailCode)) {
-                    throw new RuntimeException(mailCode + " already in use");
-                }
-                map.put(mailCode, generatorClass.newInstance());
-            }
-        }
-    }
+
 
     private MailDao mailDao = new MailDaoImpl();
 

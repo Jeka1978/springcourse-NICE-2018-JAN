@@ -10,8 +10,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class MainService {
     @Autowired
+    @NiceRepository(DBType.MONGO)
     private Dao mainDao;
+
     @Autowired
+    @NiceRepository(DBType.ORACLE)
     private Dao backupDao;
 
     @Scheduled(cron = "1/1 * * * * ?")
