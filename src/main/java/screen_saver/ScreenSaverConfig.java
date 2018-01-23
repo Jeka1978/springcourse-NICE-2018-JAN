@@ -26,7 +26,7 @@ public class ScreenSaverConfig {
 
 
     @Bean
-    @Scope(value = "prototype",proxyMode = ScopedProxyMode.TARGET_CLASS)
+    @Scope(value = "twoSeconds",proxyMode = ScopedProxyMode.TARGET_CLASS)
     public Color color() {
         return new Color(random().nextInt(255), random().nextInt(255), random().nextInt(255));
     }
