@@ -1,10 +1,12 @@
 package never_use_switch;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author Evgeny Borisov
  */
 
-@MailCode(2)
+@Component("2")
 public class EmailCallbackMailGenerator implements MailGenerator {
     @Override
 

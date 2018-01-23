@@ -1,9 +1,11 @@
 package never_use_switch;
 
+import org.springframework.stereotype.Component;
+
 /**
  * @author Evgeny Borisov
  */
-@MailCode(3)
+@Component("3")
 public class HappyBirthdayMailGenerator implements MailGenerator {
     @Override
     public String generateHtml() {
