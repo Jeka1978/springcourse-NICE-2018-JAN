@@ -1,5 +1,6 @@
-package aop_lab;
+package aop_lab.dao;
 
+import aop_lab.DataBaseException;
 import org.springframework.stereotype.Repository;
 
 import java.util.Random;

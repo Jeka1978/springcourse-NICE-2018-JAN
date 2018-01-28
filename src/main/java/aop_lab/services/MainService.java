@@ -1,5 +1,6 @@
-package aop_lab;
+package aop_lab.services;
 
+import aop_lab.dao.SomeDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

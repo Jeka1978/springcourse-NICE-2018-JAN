@@ -1,4 +1,4 @@
-package aop_lab;
+package aop_lab.dao;
 
 /**
  * @author Evgeny Borisov
